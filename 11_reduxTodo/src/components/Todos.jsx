@@ -2,9 +2,12 @@ import React from "react";
 import { useSelector,useDispatch } from "react-redux";
 import { removeTodo } from "../features/Slice/todoSlices";
 
-function Todos (){
+function Todos ({onEdit}){
     const todos = useSelector(state => state.todos);
-    const dispatch =  useDispatch()
+    const dispatch =  useDispatch();
+    
+
+    
     return(
         <>
         <div>Todos</div>
@@ -15,6 +18,33 @@ function Todos (){
                     key={todo.id}
                 >
                 <div className='text-white'>{todo.text}</div>
+                <div className="flex gap-2">
+                <button
+                            onClick={() => onEdit(todo)}
+                            className="text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded text-md"
+                            >
+                           <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="w-6 h-6"
+                            >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M16.862 4.487l1.651 1.651a1.875 1.875 0 010 2.652l-8.955 8.955a4.5 4.5 0 01-1.897 1.13l-3.234.97a.75.75 0 01-.927-.927l.97-3.234a4.5 4.5 0 011.13-1.897l8.955-8.955a1.875 1.875 0 012.652 0z"
+                            />
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M19.5 19.5h-6"
+                            />
+                            </svg>
+                </button>
+                
+
                 <button
                 onClick={() => dispatch(removeTodo(todo.id))}
                 className="text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded text-md"
@@ -34,6 +64,7 @@ function Todos (){
                     />
                 </svg>
                 </button>
+                 </div>
             </li>
             ))}
       </ul>

@@ -24,8 +24,7 @@ export const todoSlice = createSlice({
         updateTodo : (state,action) => {
         
             state.todos = state.todos.map(
-                (todo) => {
-                    todo.id === action.payload.id ? {...todo,text : action.payload.text} : todo;
+                (todo) => todo.id === action.payload.id ? {...todo,text : action.payload.text} : todo )
                     // if(todo.id === action.payload.id) {
                     //     todo.text = action.payload.text
                     //     return  todo;
@@ -33,7 +32,7 @@ export const todoSlice = createSlice({
                     // else{
                     //     return todo;
                     // }
-                })
+                
         }
     }
 })
